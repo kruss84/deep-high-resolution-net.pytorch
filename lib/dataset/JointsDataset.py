@@ -128,7 +128,11 @@ class JointsDataset(Dataset):
             )
 
         if self.color_rgb:
-            data_numpy = cv2.cvtColor(data_numpy, cv2.COLOR_BGR2RGB)
+            data_numpy = None
+            try:
+                data_numpy = cv2.cvtColor(data_numpy, cv2.COLOR_BGR2RGB)
+            except Exception as e:
+                pass
 
         if data_numpy is None:
             logger.error('=> fail to read {}'.format(image_file))
