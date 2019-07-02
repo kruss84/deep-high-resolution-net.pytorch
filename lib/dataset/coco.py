@@ -72,7 +72,7 @@ class COCODataset(JointsDataset):
         self.coco = COCO(cfg.COCO_JSON)
         self.videoname = cfg.VIDEONAME
         self.frame_path = cfg.FRAMEPATH
-	self.check_img = cfg.CHECK_IMG # check image before running
+        self.check_img = cfg.CHECK_IMG # check image before running
 
         # deal with class names
         cats = [cat['name']
