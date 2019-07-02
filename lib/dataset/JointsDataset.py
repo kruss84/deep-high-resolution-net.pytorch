@@ -126,9 +126,7 @@ class JointsDataset(Dataset):
             data_numpy = cv2.imread(
                 image_file, cv2.IMREAD_COLOR | cv2.IMREAD_IGNORE_ORIENTATION
             )
-        logger.info(data_numpy)
         if self.color_rgb:
-            data_numpy = None
             try:
                 data_numpy = cv2.cvtColor(data_numpy, cv2.COLOR_BGR2RGB)
             except Exception as e:
