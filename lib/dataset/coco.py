@@ -65,7 +65,9 @@ class COCODataset(JointsDataset):
         self.aspect_ratio = self.image_width * 1.0 / self.image_height
         self.pixel_std = 200
 
-        self.coco = COCO(self._get_ann_file_keypoint())
+        # Changed by Junwei. input the coco annotation file
+        #self.coco = COCO(self._get_ann_file_keypoint())
+        self.coco = COCO(cfg.COCO_JSON)
 
         # deal with class names
         cats = [cat['name']
