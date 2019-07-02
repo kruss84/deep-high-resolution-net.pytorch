@@ -68,6 +68,8 @@ class COCODataset(JointsDataset):
         # Changed by Junwei. input the coco annotation file
         #self.coco = COCO(self._get_ann_file_keypoint())
         self.coco = COCO(cfg.COCO_JSON)
+        self.videoname = cfg.VIDEONAME
+        self.frame_path = cfg.FRAMEPATH
 
         # deal with class names
         cats = [cat['name']
