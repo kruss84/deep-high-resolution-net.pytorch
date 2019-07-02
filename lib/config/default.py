@@ -126,6 +126,7 @@ _C.DEBUG.SAVE_HEATMAPS_PRED = False
 _C.VIDEONAME = ''
 _C.FRAMEPATH = ''
 _C.COCO_JSON = ''
+_C.CHECK_IMG = False  # some video we need to check image first otherwise it quit mid-way
 
 def update_config(cfg, args):
     cfg.defrost()
