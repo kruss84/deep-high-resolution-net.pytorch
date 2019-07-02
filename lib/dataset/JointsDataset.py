@@ -132,7 +132,7 @@ class JointsDataset(Dataset):
             try:
                 data_numpy = cv2.cvtColor(data_numpy, cv2.COLOR_BGR2RGB)
             except Exception as e:
-                logger.info("%s" % image_file)
+                logger.info("%s %s" % (image_file, e))
                 pass
 
         if data_numpy is None:
