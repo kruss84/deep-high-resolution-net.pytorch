@@ -179,6 +179,14 @@ def validate(config, val_loader, val_dataset, model, criterion, output_dir,
             all_boxes[idx:idx + num_images, 4] = np.prod(s*200, 1)
             all_boxes[idx:idx + num_images, 5] = score
             image_path.extend(meta['image'])
+            
+            # output the result per image
+            this_pred = all_preds[idx:idx + num_images, :, 0:3] # (batch_size, 17, 3)
+            #assert len(meta['image']) == len(this_pred) == len(meta['pid']), (len(meta['image']), this_pred.shape, len(meta['pid']))
+            for i in range(len(this_pred)):
+                imgname = os.path.splitext(os.path.basename(meta['image'][i]))[0]
+                target_file = os.path.join(config.OUTPUT_DIR, "%s_%s.npy" % (imgname, int(meta['pid'][i])))
+                np.save(target_file, this_pred[i])
 
             idx += num_images
 
@@ -196,7 +204,7 @@ def validate(config, val_loader, val_dataset, model, criterion, output_dir,
                 )
                 save_debug_images(config, input, meta, target, pred*4, output,
                                   prefix)
-
+        return None  # added by Junwei. We only need to run inference
         name_values, perf_indicator = val_dataset.evaluate(
             config, all_preds, output_dir, all_boxes, image_path,
             filenames, imgnums
