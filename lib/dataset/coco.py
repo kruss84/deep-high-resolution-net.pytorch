@@ -278,7 +278,7 @@ class COCODataset(JointsDataset):
                     data_test = cv2.imread(img_name, cv2.IMREAD_COLOR | cv2.IMREAD_IGNORE_ORIENTATION)
                     data_test = cv2.cvtColor(data_test, cv2.COLOR_BGR2RGB)
                 except Exception as e:
-		    logger.info("ignoring %s" % img_name)
+                    logger.info("ignoring %s" % img_name)
                     continue
 		
             box = det_res['bbox']
