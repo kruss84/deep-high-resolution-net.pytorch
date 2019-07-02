@@ -136,7 +136,7 @@ class JointsDataset(Dataset):
 
         if data_numpy is None:
             logger.error('=> fail to read {}'.format(image_file))
-            raise ValueError('Fail to read {}'.format(image_file))
+            #raise ValueError('Fail to read {}'.format(image_file))
 
         joints = db_rec['joints_3d']
         joints_vis = db_rec['joints_3d_vis']
