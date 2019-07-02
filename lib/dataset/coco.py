@@ -260,7 +260,9 @@ class COCODataset(JointsDataset):
             det_res = all_boxes[n_img]
             if det_res['category_id'] != 1:
                 continue
-            img_name = self.image_path_from_index(det_res['image_id'])
+            #img_name = self.image_path_from_index(det_res['image_id'])
+            # changed by Junwei for inferencing on actev videos
+            img_name = os.path.join(self.frame_path, self.videoname, "%s_F_%08d.jpg" % (self.videoname, det_res['image_id']))
             box = det_res['bbox']
             score = det_res['score']
 

@@ -122,6 +122,10 @@ _C.DEBUG.SAVE_BATCH_IMAGES_PRED = False
 _C.DEBUG.SAVE_HEATMAPS_GT = False
 _C.DEBUG.SAVE_HEATMAPS_PRED = False
 
+# added by Junwei for running on actev video frames
+_C.VIDEONAME = ''
+_C.FRAMEPATH = ''
+_C.COCO_JSON = ''
 
 def update_config(cfg, args):
     cfg.defrost()
