@@ -270,12 +270,12 @@ class COCODataset(JointsDataset):
             #img_name = self.image_path_from_index(det_res['image_id'])
             # changed by Junwei for inferencing on actev videos
             img_name = os.path.join(self.frame_path, self.videoname, "%s_F_%08d.jpg" % (self.videoname, det_res['image_id']))
-	    if self.check_img:
-		try:
-		    data_test = cv2.imread(img_name, cv2.IMREAD_COLOR | cv2.IMREAD_IGNORE_ORIENTATION)
-		    data_test = cv2.cvtColor(data_test, cv2.COLOR_BGR2RGB)
-		except Exception as e:
-		    continue
+            if self.check_img:
+                try:
+                    data_test = cv2.imread(img_name, cv2.IMREAD_COLOR | cv2.IMREAD_IGNORE_ORIENTATION)
+                    data_test = cv2.cvtColor(data_test, cv2.COLOR_BGR2RGB)
+                except Exception as e:
+                    continue
 		
             box = det_res['bbox']
             score = det_res['score']
