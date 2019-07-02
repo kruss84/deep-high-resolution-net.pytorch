@@ -192,7 +192,8 @@ class JointsDataset(Dataset):
             'center': c,
             'scale': s,
             'rotation': r,
-            'score': score
+            'score': score,
+            'pid': db_rec['pid']  # added by Junwei. Pass the personid so we could output the kp results
         }
 
         return input, target, target_weight, meta
