@@ -286,6 +286,7 @@ class COCODataset(JointsDataset):
                 'score': score,
                 'joints_3d': joints_3d,
                 'joints_3d_vis': joints_3d_vis,
+		'pid': det_res['pid'],  # added by Junwei for ActEV output
             })
 
         logger.info('=> Total boxes after fliter low score@{}: {}'.format(
