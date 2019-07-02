@@ -18,6 +18,8 @@ from pycocotools.cocoeval import COCOeval
 import json_tricks as json
 import numpy as np
 
+import cv2  # added by junwei 
+
 from dataset.JointsDataset import JointsDataset
 from nms.nms import oks_nms
 from nms.nms import soft_oks_nms
@@ -70,6 +72,7 @@ class COCODataset(JointsDataset):
         self.coco = COCO(cfg.COCO_JSON)
         self.videoname = cfg.VIDEONAME
         self.frame_path = cfg.FRAMEPATH
+	self.check_img = cfg.CHECK_IMG # check image before running
 
         # deal with class names
         cats = [cat['name']
@@ -267,6 +270,13 @@ class COCODataset(JointsDataset):
             #img_name = self.image_path_from_index(det_res['image_id'])
             # changed by Junwei for inferencing on actev videos
             img_name = os.path.join(self.frame_path, self.videoname, "%s_F_%08d.jpg" % (self.videoname, det_res['image_id']))
+	    if self.check_img:
+		try:
+		    data_test = cv2.imread(img_name, cv2.IMREAD_COLOR | cv2.IMREAD_IGNORE_ORIENTATION)
+		    data_test = cv2.cvtColor(data_test, cv2.COLOR_BGR2RGB)
+		except Exception as e:
+		    continue
+		
             box = det_res['bbox']
             score = det_res['score']
 
